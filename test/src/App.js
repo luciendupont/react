@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import axios from "axios";
 function App(){
 const [nom,setNom] =useState("")
 const [prenom,setPrenom]=useState("")
@@ -13,6 +13,15 @@ const [element,setElement]=useState("");
 const [list,setList]=useState([]);
 const handlechange=(evt)=>{setElement(evt.target.value)}
 const handleclick1=(evt)=>{setList([...list,element])}
+
+const [db,setDb]=useState("");
+const loadData=()=>{
+  axios.get("http://api.themoviedb.org/3/search/movie?api_key=f33cd318f5135dba306176c13104506a&query=avenger",
+  {
+    headers:{Accept:"application/json"}
+  }).then((reponse)=>)
+}
+
 
   return <>
 
@@ -28,6 +37,7 @@ const handleclick1=(evt)=>{setList([...list,element])}
 <input type="text" value={element} onChange={handlechange}/><br></br>
 <button onClick={handleclick1}>ajouter</button>
 <>{list.map((ligne)=>(<div>{ligne}</div>))}</>
+
 
 
 
